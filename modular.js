@@ -1,1 +1,1 @@
-
+var myModule = require('./myModule');
