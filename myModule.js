@@ -1,14 +1,14 @@
 module.exports = function myModule(dirName, fileName, callback) {
   var fileExt = '.' + fileName;
-  fs.readdir(dirName, function(err, list) {
+  fs.readdir (dirName, function(err, files) {
     if (err) {
       return console.log(err);
     }
-    for (var i = 0; i < list.length; i++) {
-      if (path.extname(list[i]) == fileExt) {
-          console.log(list[i]);
+    files.forEach(function (file) {
+      if (path.extname(file) === fileExt) {
+        return file;
       }
-    }
+    })
   });
 }
 
