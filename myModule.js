@@ -1,4 +1,11 @@
-module.exports = function myModule(dirName, fileName, callback) {
+module.exports = function myModule(dirName, fileName, function bar (callback) {
+  foo (function (err, files) {
+    if (err) {
+      return callback (err);
+    }
+    callback (null, files);
+  })
+}) {
   var fileExt = '.' + fileName;
   fs.readdir (dirName, function(err, files) {
     if (err) {
@@ -29,5 +36,18 @@ var fs = require('fs')
         }
       })
     })
+
+    function bar (callback) {
+           foo(function (err, files) {
+             if (err)
+               return callback(err) // early return
+
+             // ... no error, continue doing cool things with `data`
+
+             // all went well, call callback with `null` for the error argument
+
+             callback(null, files)
+           })
+         }
 
 */
