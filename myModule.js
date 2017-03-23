@@ -1,4 +1,5 @@
-module.exports = function myModule(dirName, fileExt, callback) {
+module.exports = function myModule(dirName, fileName, callback) {
+  var fileExt = '.' + fileName;
   fs.readdir(dirName, function(err, list) {
     if (err) {
       return console.log(err);
