@@ -20,6 +20,40 @@ module.exports = function myModule(dirName, fileName, function bar (callback) {
 }
 
 /*
+
+module.exports = function (dirname, extension, callback) {
+    var fs = require('fs');
+    var path = require('path');
+    var dir = dirname;
+    var arr = [];
+
+    function filter(data, ext) {
+        for (var x in data) {
+            if (path.extname(data[x]) === '.' + ext) {
+                arr.push(data[x]);
+            }
+        }
+        return arr;
+    }
+
+    var doSomething = function (err, data) {
+        if (err) throw err;
+        var mitt = filter(data, extension);
+        if (err) throw callback(err);
+        callback(null, mitt);
+    };
+
+    fs.readdir(dir, function (err, data) {
+        if (err) {
+            return callback(err);
+        };
+        doSomething(err, data);
+    });
+};
+
+*/
+
+/*
 official solution:
 
 var fs = require('fs')
