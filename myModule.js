@@ -21,67 +21,14 @@ module.exports = function myModule(dirName, fileName, function bar (callback) {
 
 /*
 
-module.exports = function (dirname, extension, callback) {
-    var fs = require('fs');
-    var path = require('path');
-    var dir = dirname;
-    var arr = [];
+var fs = require("fs");
+var firstArg = process.argv[2], secondArg = process.argv[3];
 
-    function filter(data, ext) {
-        for (var x in data) {
-            if (path.extname(data[x]) === '.' + ext) {
-                arr.push(data[x]);
-            }
-        }
-        return arr;
-    }
-
-    var doSomething = function (err, data) {
-        if (err) throw err;
-        var mitt = filter(data, extension);
-        if (err) throw callback(err);
-        callback(null, mitt);
-    };
-
-    fs.readdir(dir, function (err, data) {
-        if (err) {
-            return callback(err);
-        };
-        doSomething(err, data);
+module.exports = function (firstArg, secondArg, callback) {
+    fs.readdir(firstArg, function(err, data){
+        if(err) return callback(err);
+        callback(null, data);
     });
-};
-
-*/
-
-/*
-official solution:
-
-var fs = require('fs')
-    var path = require('path')
-
-    var folder = process.argv[2]
-    var ext = '.' + process.argv[3]
-
-    fs.readdir(folder, function (err, files) {
-      if (err) return console.error(err)
-      files.forEach(function (file) {
-        if (path.extname(file) === ext) {
-          console.log(file)
-        }
-      })
-    })
-
-    function bar (callback) {
-           foo(function (err, files) {
-             if (err)
-               return callback(err) // early return
-
-             // ... no error, continue doing cool things with `data`
-
-             // all went well, call callback with `null` for the error argument
-
-             callback(null, files)
-           })
-         }
+}
 
 */
