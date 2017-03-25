@@ -1,50 +1,43 @@
-var fs = require('fs');
-var path = require('path');
-var arr = [];
-
 module.exports = function (dirName, fileExt, callback) {
+  var fs = require('fs');
+  var path = require('path');
   fs.readdir(dirName, function(err, files) {
+    var arr = [];
     if (err) {
       return callback(err);
+    } else {
+      for (var i = 0; i < files.length; i++) {
+        if (path.extname(files[i]) == '.' + fileExt) {
+            arr.push(files[i]);
+        }
     }
-    callback(null, files);
-    for (var i = 0; i < files.length; i++) {
-      if (path.extname(files[i]) == '.' + fileExt) {
-          arr.push(files[i]);
-      }
+    callback(null, arr);
     }
   });
 }
 
 /*
 
-for (var i = 0; i < list.length; i++) {
-  if (path.extname(list[i]) == fileExt) {
-      console.log(list[i]);
-  }
-}
-
-files.forEach(function(d) {
-  if (path.extname(d) == '.' + fileExt) {
-    console.log(d);
-  }
-});
-
-*/
-
-/*
-
-var fs = require('fs');
-var firstArg = process.argv[2], secondArg = process.argv[3];
-
-module.exports = function (firstArg, secondArg, callback) {
-    fs.readdir(firstArg, function(err, data){
-        if(err) return callback(err);
-        callback(null, data);
-        list.forEach(function(d){
-        if (path.extname(d) == '.' +secondArg) console.log(d);
+module.exports = function (directory,extensionArg,callback){
+    var fs = require('fs');
+    var path = require('path');
+    var extension = '.'+extensionArg;
+    fs.readdir(directory, function(err, files){
+        var filteredFiles = [];
+        if (err)
+            {
+                callback(err);
+            }
+        else
+        {
+            for(i=0;i<files.length; i++){
+                if (path.extname(files[i]) === extension) {
+                    filteredFiles.push(files[i]);
+                }
+            }
+            callback(null,filteredFiles);
+        }
     });
-    });
-}
+ }
 
 */
