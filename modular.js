@@ -7,8 +7,8 @@ myModule(dirName, fileExt, function(err, files) {
   if (err) {
     console.log(err);
   }
-  files.forEach (function(file) {
-    console.log(file);
+  arr.forEach (function(element) {
+    console.log(element);
   });
 });
 
