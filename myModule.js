@@ -7,13 +7,29 @@ module.exports = function (dirName, fileExt, callback) {
       return callback(err);
     }
     callback(null, files);
-    list.forEach(function(d) {
-      if (path.extname(d) == '.' + fileExt) {
-        console.log(d);
+    for (var i = 0; i < files.length; i++) {
+      if (path.extname(files[i]) == '.' + fileExt) {
+          console.log(files[i]);
       }
-    });
+    }
   });
 }
+
+/*
+
+for (var i = 0; i < list.length; i++) {
+  if (path.extname(list[i]) == fileExt) {
+      console.log(list[i]);
+  }
+}
+
+files.forEach(function(d) {
+  if (path.extname(d) == '.' + fileExt) {
+    console.log(d);
+  }
+});
+
+*/
 
 /*
 
