@@ -1,5 +1,6 @@
 var fs = require('fs');
 var path = require('path');
+var arr = [];
 
 module.exports = function (dirName, fileExt, callback) {
   fs.readdir(dirName, function(err, files) {
@@ -9,7 +10,7 @@ module.exports = function (dirName, fileExt, callback) {
     callback(null, files);
     for (var i = 0; i < files.length; i++) {
       if (path.extname(files[i]) == '.' + fileExt) {
-          console.log(files[i]);
+          arr.push(files[i]);
       }
     }
   });
