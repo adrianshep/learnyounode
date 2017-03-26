@@ -17,27 +17,28 @@ module.exports = function (dirName, fileExt, callback) {
 }
 
 /*
+official solution:
 
-module.exports = function (directory,extensionArg,callback){
-    var fs = require('fs');
-    var path = require('path');
-    var extension = '.'+extensionArg;
-    fs.readdir(directory, function(err, files){
-        var filteredFiles = [];
-        if (err)
-            {
-                callback(err);
-            }
-        else
-        {
-            for(i=0;i<files.length; i++){
-                if (path.extname(files[i]) === extension) {
-                    filteredFiles.push(files[i]);
-                }
-            }
-            callback(null,filteredFiles);
+_/usr/local/lib/node_modules/learnyounode/exercises/make_it_modular/soluti
+ on/solution_filter.js_ :
+
+
+    var fs = require('fs')
+    var path = require('path')
+
+    module.exports = function (dir, filterStr, callback) {
+      fs.readdir(dir, function (err, list) {
+        if (err) {
+          return callback(err)
         }
-    });
- }
+
+        list = list.filter(function (file) {
+          return path.extname(file) === '.' + filterStr
+        })
+
+        callback(null, list)
+      })
+    }
+
 
 */

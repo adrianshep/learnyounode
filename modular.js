@@ -15,18 +15,24 @@ myModule(dirName, fileExt, function(err, files) {
 
 /*
 
-var mymodule = require('./mymodule.js');
+official solution:
 
-    mymodule(process.argv[2], process.argv[3], function(err, data){
+ _/usr/local/lib/node_modules/learnyounode/exercises/make_it_modular/soluti
+ on/solution.js_ :
 
-        if (err){
-            console.log(err)
-        }
-        else {
-            data.forEach(function(file){
-            console.log(file)
-            });
-        }
-    });
+
+    var filterFn = require('./solution_filter.js')
+    var dir = process.argv[2]
+    var filterStr = process.argv[3]
+
+    filterFn(dir, filterStr, function (err, list) {
+      if (err) {
+        return console.error('There was an error:', err)
+      }
+
+      list.forEach(function (file) {
+        console.log(file)
+      })
+    })
 
 */
