@@ -2,6 +2,7 @@ var myModule = require('./myModule');
 var dirName = process.argv[2];
 var fileExt = process.argv[3];
 
+
 myModule(dirName, fileExt, function(err, files) {
   if (err) {
     console.log(err);
