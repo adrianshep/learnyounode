@@ -58,7 +58,7 @@ var url = process.argv[2];
 
      response.pipe(bl(function (err, data) {  ...  }))
      // or
-     response.pipe(concatStream(function (data) {  ...  }))  
+     response.pipe(concatStream(function (data) {  ...  }))
 
   Note that you will probably need to data.toString() to convert from a
   Buffer.
