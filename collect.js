@@ -1,5 +1,13 @@
 var http = require('http');
 var url = process.argv[2];
+var bl = require('bl');
+var fs = require('fs');
+
+fs.createReadStream('README.md')
+  .pipe(bl(function (err, data) { // note 'new' isn't strictly required
+    // `data` is a complete Buffer object containing the full data
+    console.log(data.toString())
+  })
 
 
 
