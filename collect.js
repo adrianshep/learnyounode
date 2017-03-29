@@ -4,7 +4,7 @@ var bl = require('bl');
 var fs = require('fs');
 
 http.get(url).pipe(bl(function (err, data) {
-  console.log(data.length)
+  console.log(data.length);
   console.log(data.toString())
 }))
   })
