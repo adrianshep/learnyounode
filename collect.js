@@ -1,17 +1,35 @@
 var http = require('http');
 var url = process.argv[2];
 var bl = require('bl');
-var fs = require('fs');
 
-http.get(url).pipe(bl(function (err, data) {
-  console.log(data.length);
-  console.log(data.toString())
-}))
-  })
+http.get(url, function(response) {
+  response.pipe(bl(function (err, data) {
+    if (err) throw err;
+    console.log(data.toString().length);
+    console.log(data.toString());
+  }))
+})
 
 
 
 /*
+
+official solution:
+
+var http = require('http')
+var bl = require('bl')
+
+    http.get(process.argv[2], function (response) {
+      response.pipe(bl(function (err, data) {
+        if (err) {
+          return console.error(err)
+        }
+        data = data.toString()
+        console.log(data.length)
+        console.log(data)
+      }))
+    })
+
 
 ## HTTP COLLECT (Exercise 8 of 13)
 
