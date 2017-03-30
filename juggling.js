@@ -2,42 +2,62 @@ var http = require('http');
 var bl = require('bl');
 var count = 2;
 
-    http.get(process.argv[2], function (response) {
+function readURL(count) {
+
+    http.get(process.argv[count], function (response) {
       response.pipe(bl(function (err, data) {
         if (err) {
-          return console.error(err)
+          return console.error(err);
         }
-        data = data.toString()
+        data = data.toString();
         // console.log(data.length)
-        console.log(data)
-      }))
-    })
+        console.log(data);
+        if (count <= 3) {
+          readURL(count + 1);
+        }
+      }));
+    });
+}
 
+readURL(count);
 
 
 /*
 
-var bl = require('bl');
-var http = require('http');
-var count = 2;
+official solution:
 
-function readURL(count) {
+var http = require('http')
+var bl = require('bl')
+var results = []
+var count = 0
 
-http.get(process.argv[count], function callback(response) {
-
-response.pipe(bl(function (err, data) {
-if(err) {
-console.log(err);
-} else {
-console.log(data.toString());
-readURL(count + 1);
-}
-}));
-
-});
+function printResults () {
+  for (var i = 0; i < 3; i++) {
+    console.log(results[i])
+  }
 }
 
-readURL(count);
+function httpGet (index) {
+  http.get(process.argv[2 + index], function (response) {
+    response.pipe(bl(function (err, data) {
+      if (err) {
+        return console.error(err)
+      }
+
+      results[index] = data.toString()
+      count++
+
+      if (count === 3) {
+        printResults()
+      }
+    }))
+  })
+}
+
+for (var i = 0; i < 3; i++) {
+  httpGet(i)
+}
+
 
 
 */
