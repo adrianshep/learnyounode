@@ -1,12 +1,50 @@
+var http = require('http');
+var bl = require('bl');
+var count = 2;
 
-
-
+    http.get(process.argv[2], function (response) {
+      response.pipe(bl(function (err, data) {
+        if (err) {
+          return console.error(err)
+        }
+        data = data.toString()
+        // console.log(data.length)
+        console.log(data)
+      }))
+    })
 
 
 
 /*
 
-## JUGGLING ASYNC (Exercise 9 of 13)  
+var bl = require('bl');
+var http = require('http');
+var count = 2;
+
+function readURL(count) {
+
+http.get(process.argv[count], function callback(response) {
+
+response.pipe(bl(function (err, data) {
+if(err) {
+console.log(err);
+} else {
+console.log(data.toString());
+readURL(count + 1);
+}
+}));
+
+});
+}
+
+readURL(count);
+
+
+*/
+
+/*
+
+## JUGGLING ASYNC (Exercise 9 of 13)
 
   This problem is the same as the previous problem (HTTP COLLECT) in that
   you need to use http.get(). However, this time you will be provided with
