@@ -1,11 +1,53 @@
 var net = require('net');
+var port = process.argv[2];
+var dateTime = new Date();
+var month = dateTime.getMonth() + 1;
+if (month < 10) {
+  month = '0' + month;
+}
+var date = dateTime.getDate();
+if (date < 10) {
+  date = '0' + date;
+}
 var server = net.createServer(function (socket) {
   // socket handling logic
-  socket.end(data);
-})
-server.listen(8000)
+  var out = dateTime.getFullYear() + '-' + '0' +
+  (dateTime.getMonth() + 1) + '-' +
+  dateTime.getDate() + ' ' + dateTime.getHours() +
+  ':' + dateTime.getMinutes() + '\n';
 
+  socket.end(out);
+  socket.pipe(socket);
+});
 
+server.listen(port);
+
+/*
+
+official solution:
+
+var net = require('net')
+
+    function zeroFill (i) {
+      return (i < 10 ? '0' : '') + i
+    }
+
+    function now () {
+      var d = new Date()
+      return d.getFullYear() + '-' +
+        zeroFill(d.getMonth() + 1) + '-' +
+        zeroFill(d.getDate()) + ' ' +
+        zeroFill(d.getHours()) + ':' +
+        zeroFill(d.getMinutes())
+    }
+
+    var server = net.createServer(function (socket) {
+      socket.end(now() + '\n')
+    })
+
+    server.listen(Number(process.argv[2]))
+
+*/
 
 
 /*
