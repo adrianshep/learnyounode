@@ -1,4 +1,8 @@
-
+var net = require('net')
+var server = net.createServer(function (socket) {
+  // socket handling logic
+})
+server.listen(8000)
 
 
 
@@ -34,7 +38,7 @@
   received by your server triggers another call to the listener. The
   listener function has the signature:
 
-     function listener(socket) {  ...  }  
+     function listener(socket) {  ...  }
 
   net.createServer() also returns an instance of your server. You must call
   server.listen(portNumber) to start listening on a particular port.
