@@ -1,6 +1,7 @@
-var net = require('net')
+var net = require('net');
 var server = net.createServer(function (socket) {
   // socket handling logic
+  socket.end(data);
 })
 server.listen(8000)
 
