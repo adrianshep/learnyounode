@@ -1,4 +1,8 @@
-
+var http = require('http');
+var server = http.createServer(function (req, res) {
+  // request handling logic...
+});
+server.listen(8000);
 
 
 
@@ -27,7 +31,7 @@
   connection received by your server. The callback function has the
   signature:
 
-     function callback (request, response) {  ...  }  
+     function callback (request, response) {  ...  }
 
   Where the two arguments are objects representing the HTTP request and the
   corresponding response for this request. request is used to fetch
