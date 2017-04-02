@@ -1,6 +1,7 @@
 var http = require('http');
 var server = http.createServer(function (req, res) {
   // request handling logic...
+  fs.createReadStream();
 });
 server.listen(8000);
 
