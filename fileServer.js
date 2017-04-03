@@ -6,9 +6,10 @@ var server = http.createServer(function (req, res) {
   var stream = fs.createReadStream();
 
   stream.on('error', function(err) {
-    response.
+    response.statusCode = 500;
     response.end(String(err));
   });
+  stream.pipe(response);
 });
 server.listen(8000);
 
