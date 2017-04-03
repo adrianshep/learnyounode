@@ -1,7 +1,14 @@
 var http = require('http');
+var fs = require('fs');
+
 var server = http.createServer(function (req, res) {
   // request handling logic...
-  fs.createReadStream();
+  var stream = fs.createReadStream();
+
+  stream.on('error', function(err) {
+    response.
+    response.end(String(err));
+  });
 });
 server.listen(8000);
 
