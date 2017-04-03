@@ -1,11 +1,11 @@
 var http = require('http');
 var fs = require('fs');
 var port = process.argv[2];
-var file = process.argv[3];
+var path = process.argv[3];
 
 var server = http.createServer(function (req, res) {
   // request handling logic...
-  var stream = fs.createReadStream();
+  var stream = fs.createReadStream(path);
 
   stream.on('error', function(err) {
     response.statusCode = 500;
@@ -18,6 +18,10 @@ server.listen(port);
 
 
 /*
+
+var str = fs.readFile(file, 'utf8', function (error, data) {
+  console.log(data.split('\n').length-1);
+});
 
 ## HTTP FILE SERVER (Exercise 11 of 13)
 
