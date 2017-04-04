@@ -6,12 +6,7 @@ var path = process.argv[3];
 var server = http.createServer(function (req, res) {
   // request handling logic...
   var stream = fs.createReadStream(path);
-
-  stream.on('error', function(err) {
-    response.statusCode = 500;
-    response.end(String(err));
-  });
-  stream.pipe(response);
+  stream.pipe(res);
 });
 server.listen(port);
 
@@ -19,9 +14,19 @@ server.listen(port);
 
 /*
 
-var str = fs.readFile(file, 'utf8', function (error, data) {
-  console.log(data.split('\n').length-1);
-});
+official solution:
+
+var http = require('http')
+    var fs = require('fs')
+
+    var server = http.createServer(function (req, res) {
+      res.writeHead(200, { 'content-type': 'text/plain' })
+
+      fs.createReadStream(process.argv[3]).pipe(res)
+    })
+
+    server.listen(Number(process.argv[2]))
+    
 
 ## HTTP FILE SERVER (Exercise 11 of 13)
 
