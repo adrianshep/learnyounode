@@ -7,8 +7,15 @@ var server = http.createServer(function (req, res) {
   // request handling logic...
   var stream = fs.createReadStream(path);
   stream.pipe(res);
+
+  var map = require('through2-map')
+  inStream.pipe(map(function (chunk) {
+    return chunk.toString().split('').reverse().join('')
+  })).pipe(outStream)
+
 });
 server.listen(port);
+
 
 
 
