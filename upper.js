@@ -6,11 +6,8 @@ var path = process.argv[3];
 
 var server = http.createServer(function (req, res) {
   // request handling logic...
-  var stream = fs.createReadStream(path);
-  stream.pipe(res);
 
-
-  inStream.pipe(map(function (chunk) {
+  var inStream = inStream.pipe(map(function (chunk) {
     return chunk.toString().split('').reverse().join('')
   })).pipe(outStream)
 
