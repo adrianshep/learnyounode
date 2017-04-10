@@ -1,20 +1,52 @@
 var http = require('http');
-var fs = require('fs');
 var map = require('through2-map');
 var port = process.argv[2];
-var path = process.argv[3];
 
-var server = http.createServer(function (req, res) {
+var server = http.createServer(function (request, response) {
   // request handling logic...
+  // check to see if request method is POST
+  if (request.method === 'POST') {
+    // write request status and conent type to response head
+    response.writeHead(200, {'Content-Type': 'text/plain'})
+    // stream request to through2-map with pipe()
+    request.pipe(map(function (chunk) {
+    // convert request to uppercase string
+      return chunk.toString().toUpperCase()
+      // stream result to response with pipe()
+    })).pipe(response)
+    } else {
+    // write method not allowed error to response header if method not POST
+    response.writeHead(405)
+    }
+}).listen(+port, function() {
+  console.log('Server listening on http://localhost:%s', port)
+})
 
-  var inStream = inStream.pipe(map(function (chunk) {
-    return chunk.toString().split('').reverse().join('')
-  })).pipe(outStream)
+/*
+In the solution above, we are  assigning the http and through2-map modules to
+the variables http and map.  We are also assigning the first argument to
+our program to the variable port.
 
-});
-server.listen(port);
+Next, we a create a server and pass a callback function which accepts a
+request and response as arguments.  Inside of our callback, we are checking
+to see if the method of the request (request.method) sent to our server is
+equal to POST.  If it is, we are writing status 200 and the content type to
+the response head and piping the request to the map() method.
 
+The map() method is passed a callback which accepts chunk as an argument.
+Inside of this callback are returning the value of our chuck, which is
+converted to an uppercase string with the toString() and toUpperCase()
+methods.  Then we are pining the returned value to the response with the
+pipe() method.
 
+If the request method is not equal to POST, we are writing status 405 to
+the response head.  Error code 405 is the error code used if a method is
+not allowed, such as GET.
+
+Finally, we are listening for the port passed as the first argument to
+the program, coercing the port to a number using the unary + operator,
+and logging the server location to the console.
+*/
 
 
 
