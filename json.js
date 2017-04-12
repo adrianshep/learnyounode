@@ -1,9 +1,15 @@
 var http = require('http')
 var url = require('url')
+var path = process.argv[2]
 
 var map = require('through2-map')
 
 var server = http.createServer(function (req, res) {
+
+  if (path === '/api/parsetime') {
+    
+  }
+
   if (req.method !== 'POST') {
       return res.end('send me a POST\n')
       }
