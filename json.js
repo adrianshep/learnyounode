@@ -7,6 +7,8 @@ var map = require('through2-map')
 var server = http.createServer(function (req, res) {
 
   if (path === '/api/parsetime') {
+    return res.end();
+  } else {
     
   }
 
